@@ -7,6 +7,7 @@ import java.io.File;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import model.HFrame;
 import model.NodeModel;
 
 public class EditorPanel extends JPanel{

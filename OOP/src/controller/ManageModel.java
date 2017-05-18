@@ -11,9 +11,9 @@ import javax.swing.JPanel;
 
 import com.google.gson.Gson;
 
+import model.HFrame;
 import model.NodeModel;
 import view.EditorPanel;
-import view.HFrame;
 
 public class ManageModel {
     
