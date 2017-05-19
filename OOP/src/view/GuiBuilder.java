@@ -124,7 +124,7 @@ public class GuiBuilder extends JFrame{
 		
 		//툴바 고정
 		toolBar.setFloatable(false);
-		toolBar.setBackground(Color.LIGHT_GRAY);
+		toolBar.setBackground(new Color(240,240,240));
 		
 		newButton.addActionListener(newActionListener);
 		openButton.addActionListener(openActionListener);
@@ -156,9 +156,10 @@ public class GuiBuilder extends JFrame{
 	private void addPanel() {
 		paletteAndPropertiesPanel = new JPanel();		
 		editorScrollPane = new JScrollPane(editorPanel);
-		//test
+		paletteScrollPane = new JScrollPane(palettePanel);
+		propertiesScrollPane = new JScrollPane(propertiesPanel);
 		
-		palettePanel.setBackground(Color.YELLOW);
+		//test
 		propertiesPanel.setBackground(Color.BLUE);
 		//end of test
 		
@@ -168,17 +169,17 @@ public class GuiBuilder extends JFrame{
 		GroupLayout layout = new GroupLayout(paletteAndPropertiesPanel);
 		paletteAndPropertiesPanel.setLayout(layout);
 		
-		palettePanel.setPreferredSize(new Dimension(300,450));
-		propertiesPanel.setPreferredSize(new Dimension(300,450));
+		palettePanel.setPreferredSize(new Dimension(300,440));
+		propertiesPanel.setPreferredSize(new Dimension(300,440));
 		
 		
 		layout.setHorizontalGroup(layout.createParallelGroup()
-				.addComponent(palettePanel,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
-				.addComponent(propertiesPanel,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
+				.addComponent(paletteScrollPane,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
+				.addComponent(propertiesScrollPane,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
 				);
 		layout.setVerticalGroup(layout.createSequentialGroup()
-				.addComponent(palettePanel,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
-				.addComponent(propertiesPanel,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
+				.addComponent(paletteScrollPane,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
+				.addComponent(propertiesScrollPane,GroupLayout.DEFAULT_SIZE,GroupLayout.PREFERRED_SIZE,Short.MAX_VALUE)
 				);
 		
 	}
@@ -216,6 +217,8 @@ public class GuiBuilder extends JFrame{
 	private PalettePanel palettePanel;
 	private PropertiesPanel propertiesPanel;
 	private JScrollPane editorScrollPane;
+	private JScrollPane paletteScrollPane;
+	private JScrollPane propertiesScrollPane;
 	
 	public static void main(String[] args) {
 		new GuiBuilder();

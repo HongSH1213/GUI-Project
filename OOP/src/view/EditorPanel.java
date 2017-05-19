@@ -2,6 +2,8 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 import javax.swing.JLabel;
@@ -18,7 +20,12 @@ public class EditorPanel extends JPanel{
         fileNameLabel.setFont(new Font("Ariel", Font.PLAIN,28));
         fileNameLabel.setBounds(5, 5,500,30);
         add(fileNameLabel);
-        
+        this.addMouseMotionListener(new MouseAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                System.out.println(e.getX()+"  " + e.getY());
+            }
+        });
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -57,9 +64,10 @@ public class EditorPanel extends JPanel{
         return base;
     }
     
-    JLabel fileNameLabel;
-    JPanel backgroundPanel;
-    NodeModel base;
-    HFrame frame;
-    File file;
+    private JLabel fileNameLabel;
+    private JPanel backgroundPanel;
+    private NodeModel base;
+    private HFrame frame;
+    private File file;
+    private String type;
 }

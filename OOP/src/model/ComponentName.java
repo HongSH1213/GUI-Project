@@ -16,7 +16,20 @@ public class ComponentName {
         return ++labelCnt;
     }
     public int getPanelCnt() {
-        return ++panelCnt;
+        return --panelCnt;
     }
+    public int disFrameCnt() {
+        return --frameCnt;
+    }
+    public int disButtonCnt() {
+        return --buttonCnt;
+    }
+    public int disLabelCnt() {
+        return --labelCnt;
+    }
+    public int disPanelCnt() {
+        return --panelCnt;
+    }
+    
     
 }
