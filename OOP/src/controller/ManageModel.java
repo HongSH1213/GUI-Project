@@ -70,17 +70,11 @@ public class ManageModel {
 //        }
         else if(model.getType().equals("JButton")) {
             JButton btn = new JButton();
-//            ItemMouseListener temp = new ItemMouseListener();
-//            btn.addMouseListener(temp);
-//            btn.addMouseMotionListener(temp);
             btn.setText(model.getText());
             result = btn;
         }
         else if(model.getType().equals("JLabel")) {
             JLabel lbl = new JLabel();
-//            ItemMouseListener temp = new ItemMouseListener();
-//            lbl.addMouseListener(temp);
-//            lbl.addMouseMotionListener(temp);
             lbl.setText(model.getText());
             result = lbl;
         }

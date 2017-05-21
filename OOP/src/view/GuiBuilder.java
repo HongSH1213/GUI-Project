@@ -159,7 +159,7 @@ public class GuiBuilder extends JFrame{
 		editorScrollPane = new JScrollPane(editorPanel);
 		paletteScrollPane = new JScrollPane(palettePanel);
 		propertiesScrollPane = new JScrollPane(propertiesPanel);
-		
+		editorPanel.setPropertiesPanel(propertiesPanel);
 		
 		contentPane.add(editorScrollPane, BorderLayout.CENTER);
 		contentPane.add(paletteAndPropertiesPanel, BorderLayout.EAST);

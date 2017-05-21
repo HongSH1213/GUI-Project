@@ -4,13 +4,17 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import controller.ItemKeyListener;
 import controller.ItemMouseListener;
 import model.HFrame;
 
@@ -22,6 +26,16 @@ public class EditorPanel extends JPanel{
         fileNameLabel.setFont(new Font("Ariel", Font.PLAIN,28));
         fileNameLabel.setBounds(5, 5,500,30);
         add(fileNameLabel);
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(selectedItem!=null){
+                    selectedItem.setBorder(null);
+                    //properties 정보 초기화
+                }
+                selectedItem=null;
+               }
+        });
         
         
     }
@@ -39,8 +53,11 @@ public class EditorPanel extends JPanel{
         this.frame = frame;
         Component [] list = frame.getComponents();
         for(int i=0;i<frame.getComponentCount();++i) {
-            list[i].addMouseListener(temp);
-            list[i].addMouseMotionListener(temp);
+            ItemKeyListener itemKeyListener = new ItemKeyListener();
+            itemKeyListener.setPanel(this, propertiesPanel);
+            list[i].addKeyListener(itemKeyListener);
+            list[i].addMouseListener(itemMouseListener);
+            list[i].addMouseMotionListener(itemMouseListener);
         }
         
         backgroundPanel = new JPanel();
@@ -67,35 +84,62 @@ public class EditorPanel extends JPanel{
     public File getFile() {
         return file;
     }
-
+    public void setPropertiesPanel(PropertiesPanel panel) {
+        propertiesPanel=panel;
+        itemMouseListener.setPanel(this, propertiesPanel);
+//        itemKeyListener.setPanel(this, propertiesPanel);
+    }
+    public PropertiesPanel getProperteisPanel() {
+        return propertiesPanel;
+    }
+    public void setSelectedItem(JComponent selectedItem) {
+        this.selectedItem = selectedItem;
+    }
+    public JComponent getSelectedItem() {
+        return selectedItem;
+    }
+    public void setSuccess(boolean ox) {
+        success = ox;
+    }
+    public boolean getSuccess() {
+        return success;
+    }
     public void makeItem(JLabel type) {
-        if(type == null){
+        if(type == null){        
             item = null;
-            type = null;
+            this.type = null;
             frame.setFlag(false);
             return;
         }
         this.type=type;
         if(type.getText().equals("JLabel")) {
-            frame.countName.plusLabelCnt();
-            item = new JLabel("JLabel"+frame.countName.getLabelCnt());
+            item = new JLabel("JLabel"+(frame.countName.getLabelCnt()+1));
+            item.setName("JLabel"+frame.countName.getLabelCnt());
         }
         else if(type.getText().equals("JButton")) {
-            frame.countName.plusButtonCnt();
-            item = new JButton("JButton"+frame.countName.getButtonCnt());
+            item = new JButton("JButton"+(frame.countName.getButtonCnt()+1));
+            item.setName("JButton"+frame.countName.getButtonCnt());
         }
         frame.setFlag(true);
     }
     public void addItem(Rectangle info) {
-        
-        item.addMouseListener(temp);
-        item.addMouseMotionListener(temp);
+        success = true;
+        if(type.getText().equals("JLabel")) {
+            frame.countName.plusLabelCnt();
+        }
+        else if(type.getText().equals("JButton")) {
+            frame.countName.plusButtonCnt();
+        }
+        ItemKeyListener itemKeyListener = new ItemKeyListener();
+        itemKeyListener.setPanel(this, propertiesPanel);
+        item.addMouseListener(itemMouseListener);
+        item.addMouseMotionListener(itemMouseListener);
+        item.addKeyListener(itemKeyListener);
         item.setBounds(info);
         frame.add(item);
         type.setBackground(backGroundColor);
     }
-    
-    ItemMouseListener temp = new ItemMouseListener();
+    private ItemMouseListener itemMouseListener = new ItemMouseListener();
     private Color backGroundColor = new Color(240,240,240);
     private JLabel fileNameLabel;
     private JPanel backgroundPanel;
@@ -103,4 +147,7 @@ public class EditorPanel extends JPanel{
     private File file;
     private JComponent item;
     private JLabel type;
+    private PropertiesPanel propertiesPanel;
+    private JComponent selectedItem;
+    private boolean success;
 }

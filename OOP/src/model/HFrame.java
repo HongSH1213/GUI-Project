@@ -1,19 +1,26 @@
 package model;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import view.EditorPanel;
+import view.PropertiesPanel;
 
 public class HFrame extends JPanel{
     private String title;
     private boolean flag;
     private Rectangle info = new Rectangle();
     private EditorPanel editorPanel;
+    private PropertiesPanel propertiesPanel;
     public ComponentName countName = new ComponentName();
     public HFrame() {
         super();
@@ -22,7 +29,18 @@ public class HFrame extends JPanel{
         MyMouseListener temp = new MyMouseListener(info,this);
         addMouseListener(temp);
         addMouseMotionListener(temp);
-        
+        addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                JComponent temp = (JComponent)e.getSource();
+                HFrame frame = (HFrame)editorPanel.getFrame();
+                if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                    temp.setBorder(null);
+                    frame.repaint();
+                    editorPanel.setSelectedItem(null);
+                  //properties창 초기화
+                }
+         }
+        });
         
     }
     
@@ -52,6 +70,7 @@ public class HFrame extends JPanel{
     }
     public void setEditorPanel(EditorPanel panel) {
         this.editorPanel = panel;
+        propertiesPanel=editorPanel.getProperteisPanel();
     }
     public EditorPanel getEditorPanel() {
         return editorPanel;
@@ -106,6 +125,14 @@ public class HFrame extends JPanel{
         }
         @Override
         public void mouseClicked(MouseEvent e) {
+            JComponent temp =(JComponent)e.getSource();
+            JComponent old = editorPanel.getSelectedItem();
+            if(old!=null && old!=temp){
+                old.setBorder(null);
+            }
+            editorPanel.setSelectedItem(temp);
+            temp.requestFocus();
+            temp.setBorder(BorderFactory.createLineBorder(Color.RED));
             
         }
         

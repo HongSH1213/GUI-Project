@@ -83,6 +83,10 @@ public class PalettePanel extends JPanel {
     private class MyMouseListener extends MouseAdapter{
         @Override
         public void mouseEntered(MouseEvent e) {
+            if(editorPanel.getSuccess()==true) {
+                selectedItem = null;
+                editorPanel.makeItem(null);
+            }
             JLabel lbl = (JLabel)e.getSource();
             if(lbl != selectedItem)
                 lbl.setBackground(chooseColor);
@@ -97,7 +101,11 @@ public class PalettePanel extends JPanel {
         public void mouseClicked(MouseEvent e) {
             if(editorPanel.getFile() == null)
                 return;
-            if(selectedItem != null) {
+            if(editorPanel.getSuccess()==true) {
+                selectedItem = null;
+                editorPanel.makeItem(null);
+            }
+            if(selectedItem != null ) {
                 selectedItem.setBackground(backGroundColor);
                 selectedItem = null;
                 editorPanel.makeItem(null);
@@ -107,6 +115,7 @@ public class PalettePanel extends JPanel {
             lbl.setBackground(selectedColor);
             selectedItem = lbl;
             editorPanel.makeItem(selectedItem);
+            editorPanel.setSuccess(false);
         }        
         
     }
