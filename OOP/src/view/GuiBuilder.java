@@ -34,7 +34,7 @@ public class GuiBuilder extends JFrame {
         editorPanel = new EditorPanel();
         propertiesPanel = new PropertiesPanel();
         palettePanel = new PalettePanel();
-        controller = new Controller(editorPanel, propertiesPanel, palettePanel);
+        controller = new Controller(editorPanel);
         palettePanel.setEditorPanel(editorPanel);
         propertiesPanel.setEditorPanel(editorPanel);
         setTitle("OOP");
@@ -128,19 +128,19 @@ public class GuiBuilder extends JFrame {
         saveAsIcon = new ImageIcon("images/saveas_icon.png");
         createJavaIcon = new ImageIcon("images/java.png");
         exitIcon = new ImageIcon("images/exit.png");
-        
+
         newButton = new JButton(newIcon);
-        newButton.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        newButton.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         openButton = new JButton(openIcon);
-        openButton.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        openButton.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         saveButton = new JButton(saveIcon);
-        saveButton.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        saveButton.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         saveAsButton = new JButton(saveAsIcon);
-        saveAsButton.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        saveAsButton.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         createJavaButton = new JButton(createJavaIcon);
-        createJavaButton.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        createJavaButton.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
         exitButton = new JButton(exitIcon);
-        exitButton.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
+        exitButton.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 
         // 툴바 고정
         toolBar.setFloatable(false);

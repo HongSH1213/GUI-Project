@@ -14,21 +14,28 @@ import view.PalettePanel;
 import view.PropertiesPanel;
 
 public class Controller {
-    EditorPanel editorPanel;
-    PropertiesPanel propertiesPanel;
-    PalettePanel palettePanel;
-    NewFunctionDialog newDialog;
-    JFileChooser chooser;
-    FileNameExtensionFilter filter;
+    private EditorPanel editorPanel;
+    private NewFunctionDialog newDialog;
+    private JFileChooser chooser;
+    private JFileChooser javaChooser;
+    private FileNameExtensionFilter filter;
+    private FileNameExtensionFilter javaFilter;
+    private ManageJava javaManager;
+    private String desktop;
 
-    public Controller(EditorPanel editorPanel, PropertiesPanel propertiesPanel, PalettePanel palettePanel) {
+    public Controller(EditorPanel editorPanel) {
         this.editorPanel = editorPanel;
-        this.propertiesPanel = propertiesPanel;
-        this.palettePanel = palettePanel;
+        desktop= System.getProperty("user.home") + "\\Desktop";
         newDialog = new NewFunctionDialog(editorPanel);
-        chooser = new JFileChooser(System.getProperty("user.home") + "\\Desktop");
+        chooser = new JFileChooser(desktop);
         filter = new FileNameExtensionFilter("JSON Files", "json");
         chooser.setFileFilter(filter);
+        javaChooser = new JFileChooser(desktop);
+        javaFilter = new FileNameExtensionFilter("JAVA Files", "java");
+        javaChooser.setFileFilter(javaFilter);
+        javaChooser.setDialogTitle("자바 파일 생성");
+        javaManager = new ManageJava();
+
     }
 
     public void newFunction() {
@@ -84,6 +91,21 @@ public class Controller {
     }
 
     public void createJavaFunction() {
+        if (editorPanel.getFrame() == null)
+            return;
+        String path = desktop+"\\"+editorPanel.getFrame().getName()+".java";
+        javaChooser.setSelectedFile(new File(path));
+        int ret = javaChooser.showSaveDialog(null);
+        File file = null;
+        if (ret != JFileChooser.APPROVE_OPTION)
+            return;
+        if (!javaChooser.getSelectedFile().getName().contains(".java"))
+            file = new File(javaChooser.getSelectedFile().getPath() + ".java");
+        else
+            file = new File(javaChooser.getSelectedFile().getPath());
+        // createJava 호출
+        javaManager.createJava(editorPanel.getFrame(), file);
+
     }
 
     public void exitFunction() {
