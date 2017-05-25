@@ -26,7 +26,7 @@ public class Controller {
     public Controller(EditorPanel editorPanel, GuiBuilder gui) {
         this.editorPanel = editorPanel;
         this.gui = gui;
-        desktop= System.getProperty("user.home") + "\\Desktop";
+        desktop = System.getProperty("user.home") + "\\Desktop";
         newDialog = new NewFunctionDialog(editorPanel);
         chooser = new JFileChooser(desktop);
         filter = new FileNameExtensionFilter("JSON Files", "json");
@@ -42,7 +42,7 @@ public class Controller {
     public void newFunction() {
         newDialog.setVisible(true);
         newDialog.resetDialog();
-        if(editorPanel.getFile()!=null)
+        if (editorPanel.getFile() != null)
             gui.setVisibleButton();
     }
 
@@ -97,7 +97,7 @@ public class Controller {
     public void createJavaFunction() {
         if (editorPanel.getFrame() == null)
             return;
-        String path = desktop+"\\"+editorPanel.getFrame().getName()+".java";
+        String path = desktop + "\\" + editorPanel.getFrame().getName() + ".java";
         javaChooser.setSelectedFile(new File(path));
         int ret = javaChooser.showSaveDialog(null);
         File file = null;
