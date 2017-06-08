@@ -1,4 +1,4 @@
-package view;
+package model;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,8 +14,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import model.ComponentName;
+import view.EditorPanel;
+import view.PropertiesPanel;
 
+@SuppressWarnings("serial")
 public class HFrame extends JPanel {
 
     public HFrame() {

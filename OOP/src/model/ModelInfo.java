@@ -4,7 +4,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
-public class ModelInfo extends ComponentName {    
+public class ModelInfo extends ComponentName {
+    private int x, y;
+    private int width, height;
+    private String type;
+    private String name;
+    private String text;
+    private String parentName;
+    private int RGB;
+    
 
     public void setBounds(int x, int y, int width, int height) {
         this.x = x;
@@ -102,12 +110,4 @@ public class ModelInfo extends ComponentName {
         return new Color(RGB);
     }
 
-    private int x, y;
-    private int width, height;
-    private String type;
-    private String name;
-    private String text;
-    private String parentName;
-    private int RGB;
-    
 }
