@@ -32,8 +32,12 @@ public class GuiBuilder extends JFrame {
         propertiesPanel = new PropertiesPanel();
         palettePanel = new PalettePanel();  
         controller = new Controller(editorPanel, this);
+        // editorPanel의 여러가지 수정
+        // guiBuilder 안에 있는 버튼을 파일이 열릴시 보이게 할려고
         palettePanel.setEditorPanel(editorPanel);
+        // editorPanel에 그림 그리기
         propertiesPanel.setEditorPanel(editorPanel);
+        // editorPanel에 있는 요소 변경
         setTitle("OOP");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setMinimumSize(new Dimension(1500, 1050));

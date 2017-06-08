@@ -1,4 +1,4 @@
-package model;
+package view;
 
 import java.awt.Color;
 import java.awt.Cursor;
@@ -14,16 +14,9 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
-import view.EditorPanel;
-import view.PropertiesPanel;
+import model.ComponentName;
 
 public class HFrame extends JPanel {
-    private String title;
-    private boolean flag;
-    private Rectangle info = new Rectangle();
-    private EditorPanel editorPanel;
-    private PropertiesPanel propertiesPanel;
-    public ComponentName countName = new ComponentName();
 
     public HFrame() {
         super();
@@ -248,5 +241,12 @@ public class HFrame extends JPanel {
         }
 
     }
+    
+    private String title;
+    private boolean flag;
+    private Rectangle info = new Rectangle();
+    private EditorPanel editorPanel;
+    private PropertiesPanel propertiesPanel;
+    public ComponentName countName = new ComponentName();
 
 }

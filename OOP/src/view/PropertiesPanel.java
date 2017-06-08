@@ -20,8 +20,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import model.HFrame;
-
 public class PropertiesPanel extends JPanel {
 	public PropertiesPanel() {
 		Font defaultFont = new Font("Nirmala UI Semilight", Font.PLAIN, 30);
